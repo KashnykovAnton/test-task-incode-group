@@ -1,10 +1,11 @@
-import List from "../components/List";
+import styles from "./Main.module.css";
+import List from "../components/List/List";
 
 export default function MainPage() {
   return (
-    <>
-      <div>Hello MainPage! </div>
+    <div className={styles.container}>
+      <div>nasdaq stocks</div>
       <List />
-    </>
+    </div>
   );
 }
