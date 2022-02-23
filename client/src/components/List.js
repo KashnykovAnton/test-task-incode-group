@@ -1,15 +1,27 @@
-import { io } from "socket.io-client";
-import { useState, useEffect } from "react";
+// import { io } from "socket.io-client";
+// import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getTickersData } from "../redux/tickers/tickers-operations";
+import { selectTickers } from "../redux/tickers/tickers-selectors";
 
 export default function List() {
-  const [state, setState] = useState([]);
+  const tickersList = useSelector(selectTickers);
+  const dispatch = useDispatch();
 
-  const socket = io.connect("http://localhost:4000");
+  useEffect(() => {
+    dispatch(getTickersData());
+  }, [dispatch]);
 
-  socket.emit("start");
-  socket.on("ticker", (quotes) => {
-    setState(quotes);
-  });
+  console.log(tickersList);
+  //   const [state, setState] = useState([]);
+
+  //   const socket = io.connect("http://localhost:4000");
+
+  //   socket.emit("start");
+  //   socket.on("ticker", (quotes) => {
+  //     setState(quotes);
+  //   });
 
   //   useEffect(() => {
   //     console.log(state);
@@ -20,7 +32,7 @@ export default function List() {
   return (
     <>
       <p>Hello World</p>
-      {state.map((item) => {
+      {tickersList.map((item) => {
         console.log(item);
         return (
           <li>
