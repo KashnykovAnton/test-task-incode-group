@@ -1,9 +1,25 @@
 .container {
+  width: 100%;
   padding: 0px 20px;
   margin: 20px auto;
   text-align: center;
+  outline: 1px solid red;
 }
 
-.container > div {
-  text-transform: uppercase;
+@media screen and (min-width: 320px) {
+  .container {
+    width: 320px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 768px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    width: 1280px;
+  }
 }

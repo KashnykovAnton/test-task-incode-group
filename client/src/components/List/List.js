@@ -13,27 +13,16 @@ export default function List() {
     dispatch(getTickersData());
   }, [dispatch]);
 
-  console.log(tickersList);
-
-  // const exchange = ;
-
-  // const date = ;
-
-  // const keys = Object.keys(tickersList[0]);
-  // console.log(keys);
-
   return (
     <>
       {tickersList.length !== 0 && (
-        <div>
-          <div>
-            <h2>{tickersList[0].exchange}</h2>
-            <p>
-              {new Date(
-                tickersList[0].last_trade_time.slice(0, 19) + "Z"
-              ).toString()}
-            </p>
-          </div>
+        <div className={styles.wrapper}>
+          <h2 className={styles.title}>{tickersList[0].exchange}</h2>
+          <p className={styles.data}>
+            {new Date(
+              tickersList[0].last_trade_time.slice(0, 19) + "Z"
+            ).toString()}
+          </p>
           <table>
             <thead>
               <tr>
@@ -51,17 +40,17 @@ export default function List() {
                 <tbody key={uuidv4()}>
                   <tr>
                     <td>{item.ticker}</td>
-                    <td>{item.price}</td>
+                    <td>{item.price} $</td>
                     <td
                       className={`${
                         change ? styles.greenItem : styles.redItem
                       }`}
                     >
-                      {item.change}
+                      {item.change} $
                     </td>
-                    <td>{item.change_percent}</td>
-                    <td>{item.yield}</td>
-                    <td>{item.dividend}</td>
+                    <td>{item.change_percent} %</td>
+                    <td>{item.yield} %</td>
+                    <td>{item.dividend} $</td>
                   </tr>
                 </tbody>
               );
